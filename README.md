@@ -145,7 +145,7 @@ If you'd like to locate the latest post and use that as the landing page for
 the site, you can do it like so:
 
 ```sh
-LATEST=`find . -type f | grep -E '[0-9]+' | sort -nr | head -n 1`
+LATEST=`find build/ -type f | grep -E '[0-9]+' | grep -v '404' | sort -nr | head -n 1`
 cp "$LATEST" build/index.html
 ```
 
