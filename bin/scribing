@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+set_include_path(implode(PATH_SEPARATOR, [
+    get_include_path(),
+    __DIR__ . '/../../../', // invoked from vendor/bin in Composer install
+    __DIR__ . '/../vendor', // invoked from bin/ in git clone
+]));
+require 'autoload.php';
+
+use Auryn\Injector;
+use Elazar\Scribing\Configuration\Set as ConfigurationSet;
+use Symfony\Component\Console\Application;
+
+$injector = new Injector;
+
+$configuration = $injector->make(ConfigurationSet::class);
+$configuration($injector);
+
+$application = $injector->make(Application::class);
+$injector->execute([$application, 'run']);

@@ -1,0 +1,33 @@
+{
+    "name": "elazar/scribing",
+    "description": "A simple static blog generator",
+    "keywords": [ "blog", "static", "site", "generator" ],
+    "license": "MIT",
+    "support": {
+        "email": "me@matthewturland.com",
+        "issues": "https://github.com/elazar/scribing/issues",
+        "source": "https://github.com/elazar/scribing"
+    },
+
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Elazar\\Scribing\\": "src"
+        }
+    },
+    "bin": [
+        "bin/scribing"
+    ],
+
+    "require": {
+        "cocur/slugify": "^2.5",
+        "elazar/auryn-configuration": "^1.0",
+        "league/commonmark": "^0.15.3",
+        "league/plates": "^3.3",
+        "rdlowrey/auryn": "^1.4",
+        "symfony/console": "^3.2"
+    }
+}
