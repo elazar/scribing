@@ -53,7 +53,8 @@ class PostMetadataParser
             }
         }
 
-        $slug = $this->slugify->slugify($title);
+        $slugTitle = str_replace("'", '', $title);
+        $slug = $this->slugify->slugify($slugTitle);
 
         return new PostMetadata($title, $slug, $date);
     }
