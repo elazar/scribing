@@ -65,7 +65,7 @@ class ArchiveContentGenerator
                 $posts[$year] = [];
             }
 
-            $posts[$year][$date->format('md')] = [
+            $posts[$year][$date->format('md') . '-' . $metadata->getTitle()] = [
                 'title' => $metadata->getTitle(),
                 'date' => $date->format('M j'),
                 'url' => $metadata->getUrl(),
