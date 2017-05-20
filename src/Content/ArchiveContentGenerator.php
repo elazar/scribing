@@ -59,19 +59,27 @@ class ArchiveContentGenerator
             $content = file_get_contents($sourceFile->getPathname());
             $metadata = $this->postMetadataParser->parse($content);
 
-            $year = $metadata->getDate()->format('Y');
+            $date = $metadata->getDate();
+            $year = $date->format('Y');
             if (!isset($posts[$year])) {
                 $posts[$year] = [];
             }
 
-            $posts[$year][] = [
+            $posts[$year][$date->format('md')] = [
                 'title' => $metadata->getTitle(),
-                'date' => $metadata->getDate()->format('M j'),
+                'date' => $date->format('M j'),
                 'url' => $metadata->getUrl(),
             ];
         }
 
+        // Sort posts in reverse order by year
         krsort($posts);
+
+        // Sort posts within each year in reverse order by month and day
+        array_walk($posts, function(&$posts) {
+            krsort($posts);
+            $posts = array_values($posts);
+        });
 
         return $posts;
     }
