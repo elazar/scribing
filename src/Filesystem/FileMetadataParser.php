@@ -7,7 +7,7 @@ use League\CommonMark\Block\Element\Heading;
 use League\CommonMark\Inline\Element\Emphasis;
 use League\CommonMark\DocParser;
 
-class PostMetadataParser
+class FileMetadataParser
 {
     /**
      * @var DocParser
@@ -33,7 +33,7 @@ class PostMetadataParser
 
     /**
      * @param string $content
-     * @return PostMetadata
+     * @return FileMetadata
      */
     public function parse($content)
     {
@@ -56,6 +56,6 @@ class PostMetadataParser
         $slugTitle = str_replace("'", '', $title);
         $slug = $this->slugify->slugify($slugTitle);
 
-        return new PostMetadata($title, $slug, $date);
+        return new FileMetadata($title, $slug, $date);
     }
 }

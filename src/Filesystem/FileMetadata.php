@@ -4,7 +4,7 @@ namespace Elazar\Scribing\Filesystem;
 
 use DateTime;
 
-class PostMetadata
+class FileMetadata
 {
     /**
      * @var string
@@ -26,7 +26,7 @@ class PostMetadata
      * @param string $slug
      * @param DateTime $date
      */
-    public function __construct($title, $slug, DateTime $date)
+    public function __construct($title, $slug, DateTime $date = null)
     {
         $this->title = $title;
         $this->slug = $slug;

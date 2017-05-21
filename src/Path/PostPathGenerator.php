@@ -2,22 +2,22 @@
 
 namespace Elazar\Scribing\Path;
 
-use Elazar\Scribing\Filesystem\PostMetadataParser;
+use Elazar\Scribing\Filesystem\FileMetadataParser;
 use League\CommonMark\Block\Element\Heading;
 use League\CommonMark\Inline\Element\Emphasis;
 
 class PostPathGenerator implements PathGenerator
 {
     /**
-     * @var PostMetadataParser
+     * @var FileMetadataParser
      */
     private $parser;
 
     /**
-     * @param PostMetadataParser $parser
+     * @param FileMetadataParser $parser
      */
     public function __construct(
-        PostMetadataParser $parser
+        FileMetadataParser $parser
     ) {
         $this->parser = $parser;
     }

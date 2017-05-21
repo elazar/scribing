@@ -2,6 +2,7 @@
 
 namespace Elazar\Scribing\Content;
 
+use Elazar\Scribing\Filesystem\FileMetadataParser;
 use Elazar\Scribing\Filesystem\MarkdownFileFilterIterator;
 use Elazar\Scribing\Path\PathGenerator;
 use League\CommonMark\Converter;
@@ -15,11 +16,20 @@ class MarkdownContentGenerator
     private $converter;
 
     /**
-     * @param Converter $converter
+     * @var FileMetadataParser
      */
-    public function __construct(Converter $converter)
-    {
+    private $parser;
+
+    /**
+     * @param Converter $converter
+     * @param FileMetadataParser $parser
+     */
+    public function __construct(
+        Converter $converter,
+        FileMetadataParser $parser
+    ) {
         $this->converter = $converter;
+        $this->parser = $parser;
     }
 
     /**
@@ -36,8 +46,12 @@ class MarkdownContentGenerator
     ) {
         foreach ($sourceFiles as $sourceFile) {
             $content = file_get_contents($sourceFile->getPathname());
+            $metadata = $this->parser->parse($content);
             $converted = $this->converter->convertToHtml($content);
-            $generated = $engine->render('layout', ['content' => $converted]);
+            $generated = $engine->render('layout', [
+                'title' => $metadata->getTitle(),
+                'content' => $converted,
+            ]);
             $filePath = $destinationPath . '/' . $pathGenerator->generate($sourceFile->getPathname());
             $dirPath = dirname($filePath);
             if (!is_dir($dirPath)) {

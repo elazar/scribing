@@ -3,23 +3,23 @@
 namespace Elazar\Scribing\Content;
 
 use Elazar\Scribing\Filesystem\MarkdownFileFilterIterator;
-use Elazar\Scribing\Filesystem\PostMetadataParser;
+use Elazar\Scribing\Filesystem\FileMetadataParser;
 use League\Plates\Engine;
 
 class ArchiveContentGenerator
 {
     /**
-     * @var PostMetadataParser
+     * @var FileMetadataParser
      */
-    private $postMetadataParser;
+    private $fileMetadataParser;
 
     /**
-     * @param PostMetadataParser $postMetadataParser
+     * @param FileMetadataParser $fileMetadataParser
      */
     public function __construct(
-        PostMetadataParser $postMetadataParser
+        FileMetadataParser $fileMetadataParser
     ) {
-        $this->postMetadataParser = $postMetadataParser;
+        $this->fileMetadataParser = $fileMetadataParser;
     }
 
     /**
@@ -38,7 +38,10 @@ class ArchiveContentGenerator
             'title' => 'Archive',
             'posts' => $posts,
         ]);
-        $generated = $engine->render('layout', ['content' => $content]);
+        $generated = $engine->render('layout', [
+            'title' => 'Archive',
+            'content' => $content,
+        ]);
         $dirPath = $destinationPath . '/archive';
         if (!is_dir($dirPath)) {
             mkdir($dirPath, 0777, true);
@@ -49,7 +52,7 @@ class ArchiveContentGenerator
 
     /**
      * @param MarkdownFileFilterIterator $sourceFiles
-     * @return PostMetadata[]
+     * @return FileMetadata[]
      */
     private function getPosts(MarkdownFileFilterIterator $sourceFiles)
     {
@@ -57,7 +60,7 @@ class ArchiveContentGenerator
 
         foreach ($sourceFiles as $sourceFile) {
             $content = file_get_contents($sourceFile->getPathname());
-            $metadata = $this->postMetadataParser->parse($content);
+            $metadata = $this->fileMetadataParser->parse($content);
 
             $date = $metadata->getDate();
             $year = $date->format('Y');
