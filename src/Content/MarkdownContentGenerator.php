@@ -50,6 +50,7 @@ class MarkdownContentGenerator
             $converted = $this->converter->convertToHtml($content);
             $generated = $engine->render('layout', [
                 'title' => $metadata->getTitle(),
+                'url' => $metadata->getUrl(),
                 'content' => $converted,
             ]);
             $filePath = $destinationPath . '/' . $pathGenerator->generate($sourceFile->getPathname());
