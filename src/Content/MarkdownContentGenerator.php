@@ -48,12 +48,15 @@ class MarkdownContentGenerator
             $content = file_get_contents($sourceFile->getPathname());
             $metadata = $this->parser->parse($content);
             $converted = $this->converter->convertToHtml($content);
+            $urlPath = '/' . $pathGenerator->generate($sourceFile->getPathname());
+            $filePath = $destinationPath . $urlPath;
+
             $generated = $engine->render('layout', [
                 'title' => $metadata->getTitle(),
-                'url' => $metadata->getUrl(),
+                'url' => str_replace('/index.html', '', $urlPath),
                 'content' => $converted,
             ]);
-            $filePath = $destinationPath . '/' . $pathGenerator->generate($sourceFile->getPathname());
+
             $dirPath = dirname($filePath);
             if (!is_dir($dirPath)) {
                 mkdir($dirPath, 0777, true);
