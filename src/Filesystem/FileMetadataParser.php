@@ -54,7 +54,7 @@ class FileMetadataParser
         }
 
         $slugTitle = str_replace("'", '', $title);
-        $slug = $this->slugify->slugify($slugTitle);
+        $slug = $this->slugify->slugify($slugTitle, ['regexp' => '/[^A-Za-z0-9-_]+/']);
 
         return new FileMetadata($title, $slug, $date);
     }
