@@ -28,6 +28,7 @@
         "league/commonmark": "^0.15.3",
         "league/plates": "^3.3",
         "rdlowrey/auryn": "^1.4",
-        "symfony/console": "^3.2"
+        "symfony/console": "^3.2",
+        "zendframework/zend-feed": "^2.8"
     }
 }

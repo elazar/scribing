@@ -84,8 +84,10 @@ To generate the static files for a blog based on the post and page content
 files and Plates template files you've created, you use the `scribing` console
 command.
 
-`scribing` supports two subcommands: `build:posts` and `build:pages`. Both use
-the same parameters.
+### Posts and Pages
+
+`scribing` supports multiple subcommands, two of which are: `build:posts` and
+`build:pages`. Both use the same parameters.
 
 ```
 build:posts [--templateData=path/to/data.php] <sourcePath> <destinationPath> <templatePath>
@@ -103,6 +105,22 @@ it generates.
 
 To build pages instead of posts, simply substitute `build:pages` for
 `build:posts` in the example above.
+
+### Feed
+
+To build a feed from posts, `scribing` supports a `build:feed` subcommand.
+
+```
+build:feed --feedTitle="Feed Title" --feedLink="https://example.com/feed.xml" <sourcePath> <destinationPath>
+```
+
+`--feedTitle` is a title for the feed required by the Atom format
+
+`--feedLink` is an absolute URL to the feed required by the Atom format
+
+`<sourcePath>` is a directory that contains the source files for posts to include in the feed
+
+`<destinationPath>` is a directory into which `scribing` will store the feed file
 
 ## Using GitHub Pages
 

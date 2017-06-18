@@ -16,6 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class Application implements ConfigurationInterface
 {
     private $commandClasses = [
+        Command\BuildFeed::class,
         Command\BuildPages::class,
         Command\BuildPosts::class,
     ];

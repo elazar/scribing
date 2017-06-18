@@ -2,8 +2,8 @@
 
 namespace Elazar\Scribing\Content;
 
-use Elazar\Scribing\Filesystem\MarkdownFileFilterIterator;
 use Elazar\Scribing\Filesystem\FileMetadataParser;
+use Elazar\Scribing\Filesystem\MarkdownFileFilterIterator;
 use League\Plates\Engine;
 
 class ArchiveContentGenerator
