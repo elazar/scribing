@@ -23,14 +23,28 @@ Scribing supports two document types: posts and pages.
 Posts include a top level heading containing a title followed by a date
 formatted with emphasis.
 
+```markdown
+# Post Title
+
+*September 28, 2017*
+
+Content goes here
+```
+
 Scribing both builds an individual file for each post and also includes a link
 to it on an archive page. Its path is derived from the date and title included
 in the Markdown content file.
 
 ### Pages
 
-Pages include a top level heading, but unless posts, they are not
+Pages include a top level heading, but unlike posts, they are not
 date-specific. Often, their content rarely changes.
+
+```markdown
+# Page Title
+
+Content goes here
+```
 
 Scribing builds a file for each page at a path based on the name of the
 Markdown content file.
@@ -56,7 +70,7 @@ the document's `<title>` tag.
 
 `archive.php` is used to generate the content for the archive page. Unlike the
 content for other pages, archive page content is generated from data contained
-in post and page content files rather than being created manually in Markdown.
+in post content files rather than being created manually in Markdown.
 
 An associative array of posts keyed by year is passed into `$posts`, where the
 value referenced by each year is an enumerated array of posts for that year.
