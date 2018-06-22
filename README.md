@@ -12,6 +12,10 @@ Use [Composer](https://getcomposer.org/).
 composer require elazar/scribing
 ```
 
+## Example
+
+If you'd like to see a working example of a site that uses Scribing, check out [this repository](https://github.com/elazar/blog-content).
+
 ## Content
 
 Content for Scribing is written in [Common Markdown](http://commonmark.org).
